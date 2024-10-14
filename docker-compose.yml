@@ -1,0 +1,66 @@
+#version: '3'
+services:
+  oracle-db1:
+    image: container-registry.oracle.com/database/express:21.3.0-xe
+    container_name: oracle-db1
+    ports:
+      - 1531:1521
+      - 5555:5500
+    environment:
+      ORACLE_PASSWORD: "system2024"
+      ORACLE_ALLOW_REMOTE: "true"
+      ORACLE_PWD: "system2024"
+    networks:
+      - oracle-python-network  
+
+  oracle-db2:
+    image: container-registry.oracle.com/database/express:21.3.0-xe
+    container_name: oracle-db2
+    ports:
+      - 1532:1521
+      - 5556:5500
+    environment:
+      ORACLE_PASSWORD: "system2024"
+      ORACLE_ALLOW_REMOTE: "true"
+      ORACLE_PWD: "system2024"
+    networks:
+      - oracle-python-network  
+
+  my-liquibase:
+    image: my-liquibase
+    container_name: my-liquibase
+    depends_on:
+      - oracle-db1
+      - oracle-db2
+    volumes:
+      - ./wait.sh:/wait.sh
+      - ./liquibase/changelog:/liquibase/changelog  # Папка с changelog-скриптами Liquibase
+    entrypoint: /wait.sh
+    networks:
+      - oracle-python-network
+  
+  python-client:
+    image: python-client
+    container_name: python-client
+    depends_on:
+      - my-liquibase
+    volumes:
+      - ./python-client/report-pandas.py:/app/report-pandas.py  # Монтируем скрипт
+      - ./python-client/s3access.csv:/app/s3access.csv  # Монтируем файл s3access.csv
+      #- ./instantclient:/opt/oracle/instantclient  # Монтируем библиотеки Oracle (не нужно)
+      #- /var/run/docker.sock:/var/run/docker.sock #Вот без этого  - нельзя (намучился)
+      - ./wait-python.sh:/wait-python.sh
+    environment:
+      #- LD_LIBRARY_PATH=/opt/oracle/instantclient  # Настраиваем переменные окружения
+      #- ORACLE_HOME=/opt/oracle/instantclient
+      - DOCKER_HOST=unix:///var/run/docker.sock #Вот без этого  - нельзя (намучился)
+    entrypoint: /wait-python.sh #  Запускаем скрипт Python
+    networks:
+      - oracle-python-network
+       
+# networks:
+#   default:
+#     driver: bridge
+networks:
+  oracle-python-network:
+    driver: bridge    

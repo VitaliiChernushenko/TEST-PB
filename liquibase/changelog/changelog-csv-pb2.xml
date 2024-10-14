@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+        http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.8.xsd">
+
+    <changeSet id="31" author="VITALII">
+        <loadData
+            file="changelog-csv-purchases.csv"
+            tableName="PURCHASES"
+            separator=","
+            dateFormat="YYYY-MM-DD HH:mm:ss">
+            <column name="CL_ID" type="integer"/>
+            <column name="AMOUNT" type="float"/>
+            <column name="ADATE" type="date"/>
+            <column name="PRODUCT_ID" type="integer"/>
+        </loadData>
+    </changeSet>
+
+</databaseChangeLog>

@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                        http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.8.xsd">
+
+    <!-- Наполнение таблицы данными с помощью SQL-запроса -->
+    <changeSet id="2" author="vitalii">
+        <sql>
+            CREATE USER VITALII_LB IDENTIFIED BY VITALII_LB;
+            GRANT CONNECT TO VITALII_LB WITH ADMIN OPTION;
+            GRANT RESOURCE TO VITALII_LB WITH ADMIN OPTION;
+            ALTER USER VITALII_LB DEFAULT ROLE ALL;
+            GRANT CREATE DATABASE LINK TO VITALII_LB;
+            ALTER USER VITALII_LB QUOTA UNLIMITED ON USERS;
+        </sql>
+    </changeSet>
+
+</databaseChangeLog>

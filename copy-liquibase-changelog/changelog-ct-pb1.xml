@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                        http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.8.xsd">
+
+    <!-- Создание таблицы -->
+    <changeSet id="1" author="vitalii">
+        <createTable tableName="clients">
+            <column name="id" type="int">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="name" type="varchar(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="age" type="int"/>
+        </createTable>
+    </changeSet>
+
+    <!-- Наполнение таблицы данными с помощью SQL-запроса -->
+    <changeSet id="2" author="vitalii">
+        <sql>
+            INSERT INTO clients (id, name, age) VALUES (1, 'Alice', 30);
+            INSERT INTO clients (id, name, age) VALUES (2, 'Bob', 25);
+            INSERT INTO clients (id, name, age) VALUES (3, 'Charlie', 35);
+        </sql>
+    </changeSet>
+
+</databaseChangeLog>

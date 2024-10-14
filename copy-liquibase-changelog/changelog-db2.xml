@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+        http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.8.xsd">
+
+    <!--
+    <changeSet id="1" author="yourname">
+        <sql>
+            CREATE DATABASE LINK master_db_link
+            CONNECT TO "remote_username" IDENTIFIED BY "remote_password"
+            USING 'remote_database';
+        </sql>
+    </changeSet>
+    -->
+    <changeSet id="1" author="vitalii">
+        <createTable tableName="REFPRODUCTS">
+            <column name="ID" type="NUMBER" >
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="ANAME" type="VARCHAR2(50)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="DESCRIPTION" type="VARCHAR2(100)">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    
+    <changeSet id="2" author="vitalii">
+        <createTable tableName="PURCHASES">
+            <column name="CL_ID" type="NUMBER" >
+                <constraints nullable="false"/>
+            </column>
+            <column name="AMOUNT" type="NUMBER">
+                <constraints nullable="false"/>
+            </column>
+            <column name="ADATE" type="DATE">
+                <constraints nullable="false"/>
+            </column>
+            <column name="PRODUCT_ID" type="NUMBER">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    
+    <!-- Добавление внешнего ключа в таблицу REFPRODUCTS -->
+    <!--<changeSet id="3" author="vitalii">
+        <addForeignKeyConstraint 
+            baseTableName="PURCHASES" 
+            baseColumnNames="PRODUCT_ID" 
+            referencedTableName="REFPRODUCTS" 
+            referencedColumnNames="ID" 
+            constraintName="FK_PRODUCT"/>
+    </changeSet> -->
+    <!-- Наполнение таблицы данными с помощью SQL-запроса -->
+    <changeSet id="21" author="vitalii">
+        <sql>
+            INSERT INTO REFPRODUCTS (ID, ANAME, DESCRIPTION) VALUES (1, 'Car', 'Car');
+            INSERT INTO REFPRODUCTS (ID, ANAME, DESCRIPTION) VALUES (2, 'Bowle', 'Bowle');
+            INSERT INTO REFPRODUCTS (ID, ANAME, DESCRIPTION) VALUES (3, 'House', 'House');
+        </sql>
+    </changeSet>
+    <changeSet id="22" author="vitalii">
+        <sql>
+            INSERT INTO PURCHASES (CL_ID, AMOUNT, ADATE, PRODUCT_ID) VALUES (1, 1000, SYSDATE-20, 1);
+            INSERT INTO PURCHASES (CL_ID, AMOUNT, ADATE, PRODUCT_ID) VALUES (1, 2000, SYSDATE-40, 1);
+            INSERT INTO PURCHASES (CL_ID, AMOUNT, ADATE, PRODUCT_ID) VALUES (1, 3000, SYSDATE-10, 3);
+            INSERT INTO PURCHASES (CL_ID, AMOUNT, ADATE, PRODUCT_ID) VALUES (2, 1001, SYSDATE-20, 1);
+            INSERT INTO PURCHASES (CL_ID, AMOUNT, ADATE, PRODUCT_ID) VALUES (2, 2001, SYSDATE-30, 1);
+            INSERT INTO PURCHASES (CL_ID, AMOUNT, ADATE, PRODUCT_ID) VALUES (2, 3001, SYSDATE-20.1, 3);
+            INSERT INTO PURCHASES (CL_ID, AMOUNT, ADATE, PRODUCT_ID) VALUES (3, 4000, SYSDATE-50, 1);
+            INSERT INTO PURCHASES (CL_ID, AMOUNT, ADATE, PRODUCT_ID) VALUES (3, 2000, SYSDATE-20, 1);
+            INSERT INTO PURCHASES (CL_ID, AMOUNT, ADATE, PRODUCT_ID) VALUES (3, 3000, SYSDATE-10, 3);
+        </sql>
+    </changeSet>
+    
+</databaseChangeLog>
