@@ -48,7 +48,7 @@ services:
       - ./python-client/report-pandas.py:/app/report-pandas.py  # Монтируем скрипт
       - ./python-client/s3access.csv:/app/s3access.csv  # Монтируем файл s3access.csv
       #- ./instantclient:/opt/oracle/instantclient  # Монтируем библиотеки Oracle (не нужно)
-      #- /var/run/docker.sock:/var/run/docker.sock #Вот без этого  - нельзя (намучился)
+      - /var/run/docker.sock:/var/run/docker.sock #Вот без этого  - нельзя (намучился)
       - ./wait-python.sh:/wait-python.sh
     environment:
       #- LD_LIBRARY_PATH=/opt/oracle/instantclient  # Настраиваем переменные окружения
