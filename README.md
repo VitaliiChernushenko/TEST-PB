@@ -23,10 +23,12 @@ ClientId, FIO, Amount, adate. Файл должен выкладываться �
   - создать bucket в AmazonS3 с именем pb.report
   - заполнить файл s3access.csv своими учетными данными
   - пересоздать image python-client:
-    `PS C:\docker\TEST-PB\python-client> docker build . -t python-client` <br> 
+    `PS C:\docker\TEST-PB\docker build -t python-client ./python-client` <br>
+  - пересоздать image my-liquibase
+    `PS C:\docker\TEST-PB\docker build -t my-liquibase ./liquibase` <br>
 
 Для сборки перейти в каталог TEST-PB (в нем должен быть docker-compose.yml) и выполнить в командной строке команду (в Windows PowerShell ее вид следующий):<br>
-`PS C:\docker\TEST-PB> docker-compose up`<br>
+`PS C:\docker\TEST-PB> docker-compose up --build`<br>
 
 Если необходимо загрузить "свои" данные, можно внести изменения в файлы каталога \liquibase после чего перестроить image <br>
 `PS C:\docker\TEST-PB\liquibase> docker build . -t my-liquibase` <br>
