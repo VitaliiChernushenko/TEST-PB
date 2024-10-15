@@ -23,7 +23,8 @@ ClientId, FIO, Amount, adate. Файл должен выкладываться �
   - создать bucket в AmazonS3 с именем pb.reports
   - заполнить файл s3access.csv своими учетными данными
   - Выполнить
-       `git clone https://github.com/VitaliiChernushenko/TEST-PB.git`
+       <br>`git clone https://github.com/VitaliiChernushenko/TEST-PB.git`
+       <br>`cd TEST-PB`
   - Для Windows возможно потребуется выполнить преобразование файлов wait.sh и wait-python.sh из bash <br>
     - `dos2unix wait.sh`
     - `dos2unix wait-python.sh`
