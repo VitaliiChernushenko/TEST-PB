@@ -29,17 +29,17 @@ ClientId, FIO, Amount, adate. Файл должен выкладываться �
     - `dos2unix wait.sh`
     - `dos2unix wait-python.sh`
   - пересоздать image python-client:<br>
-    `PS C:\docker\TEST-PB\docker build -t python-client ./python-client` <br>
+    `TEST-PB\docker build -t python-client ./python-client` <br>
   - пересоздать image my-liquibase<br>
-    `PS C:\docker\TEST-PB\docker build -t my-liquibase ./liquibase` <br>
+    `TEST-PB\docker build -t my-liquibase ./liquibase` <br>
 
-Для сборки перейти в каталог TEST-PB (в нем должен быть docker-compose.yml) и выполнить в командной строке команду (в Windows PowerShell ее вид следующий):<br>
-`PS C:\docker\TEST-PB> docker-compose up --build`<br>
+Для сборки перейти в каталог TEST-PB (в нем должен быть docker-compose.yml) и выполнить в командной строке команду:<br>
+`\TEST-PB> docker-compose up --build`<br>
 
 Если необходимо загрузить "свои" данные, можно внести изменения в файлы каталога \liquibase после чего перестроить image <br>
-`PS C:\docker\TEST-PB\liquibase> docker build . -t my-liquibase` <br>
+`TEST-PB\docker build . -t my-liquibase ./liquibase` <br>
 и снова пересоздать контейнер: <br>
-`PS C:\docker\TEST-PB> docker-compose up` <br>
+`TEST-PB> docker-compose up --build` <br>
 В результате работы программы python в AmazonS3 в bucket с именем pb.report должен быть создан файл report-pandas-simple.csv который хранит результат вычислений согласно условию ТЗ.
 
 Известные ограничения:<br>
