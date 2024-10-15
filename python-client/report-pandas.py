@@ -156,7 +156,7 @@ def main():
         result.to_csv(csv_buffer, index=False)
 
         # Сохранение результата в S3
-        bucket_name = 'reports'  # Замените на ваш имя бакета
+        bucket_name = 'pb.report'  # Замените на ваш имя бакета
         s3_file_name = 'report-pandas-simple.csv'  # Название файла в S3
 
         # Чтение файла CSV и получение Access Key и Secret Key
