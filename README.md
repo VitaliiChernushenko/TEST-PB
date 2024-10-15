@@ -22,7 +22,9 @@ ClientId, FIO, Amount, adate. Файл должен выкладываться �
   - установить docker-compose
   - создать bucket в AmazonS3 с именем pb.reports
   - заполнить файл s3access.csv своими учетными данными
-  - Если скрипт был создан в Window выполнить преобразование файлов wait.sh и wait-python.sh из bash <br>
+  - Выполнить
+       `git clone https://github.com/VitaliiChernushenko/TEST-PB.git`
+  - Для Windows возможно потребуется выполнить преобразование файлов wait.sh и wait-python.sh из bash <br>
     - `dos2unix wait.sh`
     - `dos2unix wait-python.sh`
   - пересоздать image python-client:<br>
